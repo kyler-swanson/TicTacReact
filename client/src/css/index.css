@@ -1,0 +1,336 @@
+/*
+  Fonts
+*/
+
+@font-face {
+  font-family: 'BaronNeue';
+  src: url('./fonts/BaronNeue.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  Animations
+*/
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    left: 0;
+  }
+  to {
+    left: 15%;
+    transform: translate(-50%, 0px);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    right: 0;
+  }
+  to {
+    right: 15%;
+    transform: translate(50%, 0px);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0px;
+  background-color: #386FA4;
+  font-family: 'BaronNeue';
+}
+
+/*
+  Login
+*/
+
+.login {
+  position: absolute;
+  color: white;
+  width: auto;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login input {
+  text-align: center;
+  padding:10px 10px 10px 5px;
+  font-family: 'BaronNeue';
+  font-size: 18px;
+  color: white;
+  width: 100%;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px solid #f3f3f3;
+  background-color: rgba(0,0,0,0);
+}
+
+.login input:focus { outline: none; }
+
+/*
+  Player List
+*/
+
+.players {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100px;
+
+  position: absolute;
+  top: 50%;
+  transform: translate(0px, -50%);
+
+  color: white;
+}
+
+.players span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: 'Arial';
+  font-size: 32px;
+}
+
+.players .player1 {
+  position: absolute;
+  animation: slideLeft 1s;
+  animation-fill-mode: forwards;  
+}
+
+.players .player2 {
+  position: absolute;
+  animation: slideRight 1s;
+  animation-fill-mode: forwards;  
+}
+
+.players h3 {
+  padding: 10px;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+/*
+  Dialog
+*/
+
+.dialog {
+  transition: opacity 1s ease;
+  position: fixed;
+  z-index: 15;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.dialog-content {
+  position: fixed;
+  height: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.dialog-content h2 {
+  text-align: center;
+  color: white;
+}
+
+.dialog-content span {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  border-bottom: 2px solid #59A5D8;
+  transition: background-color 0.35s ease;
+  width: 50%;
+  color: white;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.dialog-content span:hover {
+  background-color: #59A5D8;
+}
+
+.dialog.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dialog.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*
+  Game
+*/
+
+.board {
+  transition: opacity 1s;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.31);
+}
+
+.visible {
+  animation: fadein 1s;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.board table {
+  table-layout: fixed;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  background-color: #59A5D8;
+}
+
+.bounce {
+  animation: bounce 0.5s;
+}
+
+.board td {
+  -webkit-transition: background-color 1.5s ease;
+  -moz-transition: background-color 1.5s ease;
+  -o-transition: background-color 1.5s ease;
+  transition: background-color 1.5s ease;
+  background-color: #84D2F6;
+  padding: 20px;
+}
+
+.status {
+  padding: 30px;
+  text-align: center;
+  background-color: #133C55;
+}
+
+.status .heading, .status .body {
+  color: white;
+  margin: 0px;
+}
+
+.tile-container {
+  z-index: 10;
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: rgb(162, 223, 252) !important;
+}
+
+.tile {
+  display: block;
+  background-color: #84D2F6;
+  min-width: 100%;
+  max-width: 100%;
+  text-align: center;
+  font-family: 'Arial';
+  color: white;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .players {
+    display: none;
+  }
+  .board {
+    width: 85vw;
+  }
+  .tile {
+    font-size: 5em;
+  }
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .players {
+    display: none;
+  }
+  .board {
+    width: 60%;
+  }
+  .tile {
+    font-size: 88px;
+  }
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .players {
+    display: none;
+  }
+  .board {
+    width: 45%;
+  }
+  .tile {
+    font-size: 78px;
+  }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .players {
+    display: block;
+  }
+  .board {
+    width: 40%;
+  }
+  .tile {
+    font-size: 84px;
+  }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .players {
+    display: block;
+  }
+  .board {
+    width: 35%;
+  }
+  .tile {
+    font-size: 92px;
+  }
+}

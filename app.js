@@ -1,6 +1,8 @@
 #!/usr/bin/env nodejs
+/*
 var express = require('express');
-var app = express();
+var app = express(); 
+*/
 const io = require('socket.io')();
 
 //const Game = require('./src/classes/Game.js');
@@ -11,7 +13,7 @@ init();
 function init() {
 
   // Set server ports \\
-  const WEB_PORT = 3000;
+ //const WEB_PORT = 3000;
   const SOCKET_PORT = 2096;
 
   /* 
@@ -26,14 +28,7 @@ function init() {
     EXPRESS
   */
 
-    /*
-  app.get(URL_ROUTE, function(req, res){
-    res.sendFile(__dirname + CLIENT_DIR + '/index.html');
-  });
-
-  app.use(express.static(__dirname + CLIENT_DIR));
-  */
-
+  /*
   app.get(URL_ROUTE, function(req, res){
     res.sendFile(__dirname + CLIENT_DIR + '/index.html');
   });
@@ -45,15 +40,17 @@ function init() {
     console.log('[TIC TAC REACT] Web server live on port ' + WEB_PORT);
   });
 
+  */
+
   /*
     SOCKET.IO
   */
 
- io.listen(SOCKET_PORT);
- console.log('[TIC TAC REACT] Socket server live on port ' + SOCKET_PORT);
- console.log('[TIC TAC REACT] Waiting for players...');
+  io.listen(SOCKET_PORT);
+  console.log('[TIC TAC REACT] Socket server live on port ' + SOCKET_PORT);
+  console.log('[TIC TAC REACT] Waiting for players...');
 
- initListeners();
+  initListeners();
 }
 
 let games = {};

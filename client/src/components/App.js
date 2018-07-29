@@ -9,9 +9,6 @@ import io from 'socket.io-client';
 let username = null;
 let socket = null;
 
-const SOCKET_PORT = 2086;
-const SOCKET_PROTOCOL = 'http';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -109,7 +106,7 @@ class App extends React.Component {
   }
 
   handleSocket(username) {
-    socket = io(SOCKET_PROTOCOL + '://' + window.location.hostname + ':' + SOCKET_PORT);
+    socket = io(process.env.REACT_APP_SOCKET_URL);
 
     socket.on('connect', () => {
       socket.emit('login', {user: username});

@@ -14,7 +14,7 @@ function init() {
 
   // Set server ports \\
  //const WEB_PORT = 3000;
-  const SOCKET_PORT = 2096;
+  const SOCKET_PORT = 3001;
 
   /* 
     Set client directory (relative to this file)

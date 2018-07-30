@@ -5,7 +5,7 @@ class Dialog extends React.Component {
     let actionList = [];
     for (let i = 0; i < actions.length; i++) {
       actionList.push(
-        <span onClick={actions[i].onClick}>{actions[i].action}</span>
+        <span key={i} onClick={actions[i].onClick}>{actions[i].action}</span>
       );
     }
 

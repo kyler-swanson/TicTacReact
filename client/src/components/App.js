@@ -150,6 +150,13 @@ class App extends React.Component {
       });
     });
 
+    socket.on('gameTie', () => {
+      this.setState({
+        winner: 'Tie',
+        status: {heading: 'Tie!', body: 'No moves left.'},
+      });
+    });
+
     socket.on('gameSetup', (data) => {
       this.setState({
         status: data.status,
@@ -204,7 +211,7 @@ class App extends React.Component {
         <div className="game">
           <Board
             winningTiles={this.state.winningTiles}
-            gameOver={(this.state.winner != null ? true : false)}
+            gameOver={(this.state.winner != null && this.state.winner !== 'Tie' ? true : false)}
             extraClasses={this.state.hideBoard ? 'hidden' : 'visible'}
             moves={this.state.moves} 
             onClick={(i) => this.handleMove(i)}

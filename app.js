@@ -62,7 +62,7 @@ let games = {};
 
 function getStatus(type, player = '') {
   const status = {
-    default: {heading: 'Tic Tac React', body: 'Waiting for game to start...'},
+    default: {heading: 'Tic Tac React', body: 'Searching for players...'},
     xTurn: {heading: "X's turn", body: ['Make your move!', 'Waiting for ' + player + '...']},
     oTurn: {heading: "O's turn", body: ['Make your move!', 'Waiting for ' + player + '...']},
   };
@@ -151,6 +151,10 @@ function calculateWinner(moves) {
     }
   }
   return {winner: null, tiles: null};
+}
+
+function isNoMovesLeft(tile) {
+  return (tile != '_');
 }
 
 /*
@@ -289,6 +293,17 @@ class Game {
       setTimeout(() => {
         this.end();
       }, 5000);
+    } else {
+      if (this.getBoard().every(isNoMovesLeft)) {
+        this.winner = 'Tie';
+
+        console.log(getGamePrefix(this.getID()) + 'Game has tied!');
+
+        io.to(this.getRoomID()).emit('gameTie');
+        setTimeout(() => {
+          this.end();
+        }, 5000);
+      }
     }
   }
 

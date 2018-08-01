@@ -185,9 +185,13 @@ function initListeners() {
     });
   
     client.on('doMove', (moves) => {
-      let game = getUserGame(username);
-      if (!game.getWinner()) {
-        game.handleMove(moves);
+      const game = getUserGame(username);
+      if (game) {
+        if (!game.getWinner()) {
+          game.handleMove(moves);
+        }
+      } else {
+        client.disconnect(true);
       }
     });
   });
